@@ -5,7 +5,7 @@ const app = require("express")(),
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
 
-    const query1 = "SELECT * FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
+    const query1 = "SELECT * FROM users WHERE email = $1 AND password = $2";
 
-    pool.query(query1, [], function(err, results) {});
+    pool.query(query1, [email, password], function(err, results) {});
 });
